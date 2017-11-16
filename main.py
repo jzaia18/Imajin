@@ -1,10 +1,23 @@
-from flask import Flask, render_template, session, redirect, url_for
+from flask import Flask, render_template, session, redirect, url_for, request, flash
 
 app = Flask(__name__)
 
 @app.route('/')
 def root_route():
-    return ""
+    return render_template("login.html")
+
+@app.route('/login', methods=['GET', 'POST'])
+def login_logic():
+    if request.method == "GET":
+        return redirect(url_for("root_route"))
+    uname = request.form.get("username", "")
+    pword = request.form.get("password", "")
+    if 3 < 5: #replace with login validation function
+        session["user"] = uname
+        return redirect(url_for("user_page"))
+    else:
+        flash("Wrong username or password")
+        return redirect(url_for("root_route"))
 
 @app.route('/home')
 def user_page():
