@@ -102,3 +102,6 @@ ENV/
 
 # API key
 .api*
+
+# Emacs autosaves
+*~
