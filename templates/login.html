@@ -13,6 +13,8 @@ Login to Imajin!
 <br><br><br><br><br><br><br><br><br>
 <center>
   <h1>Login Or Create A New Account!</h1>
+  {% set messages = get_flashed_messages() %}
+  {% for msg in messages %} {{ m }} {% endfor %}
   <form method="POST" action="/login">
     Username:
     <input type="text" name="username">

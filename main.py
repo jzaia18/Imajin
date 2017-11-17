@@ -12,7 +12,7 @@ def login_logic():
         return redirect(url_for("root_route"))
     uname = request.form.get("username", "")
     pword = request.form.get("password", "")
-    if 3 < 5: #replace with login validation function
+    if uname == pword: #replace with login validation function
         session["user"] = uname
         return redirect(url_for("user_page"))
     else:
@@ -21,8 +21,9 @@ def login_logic():
 
 @app.route('/home')
 def user_page():
-    return ""
+    return render_template("user.html")
 
 if __name__ == "__main__":
     app.debug = True
+    app.secret_key = "just you, me, and the rest of the world"
     app.run()
