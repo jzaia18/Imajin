@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block content1 %}
+<title>
+TRIVIA
+</title>
+{% endblock %}
+
+{% block content2 %}
+<center><body><h> Results </h1><br><br>
+DEMO OF API - Full Demonstration of this api takes a lot of time
+<br><br>
+Questions: <br><br>
+  {% for i in Q %}
+      {{i}} <br>
+  {% endfor %}
+<br>
+Answers in order:<br><br>
+  {% for i in A %}
+      {{i}} <br>
+  {% endfor %}
+<br>
+Incorrect choices in order:<br><br>
+  {% for i in B %}
+      {{i}} <br>
+  {% endfor %}
+<br>
+<br> <a href="/show"> Back </a>
+</body></center>
+</html>
+
+{% endblock %}

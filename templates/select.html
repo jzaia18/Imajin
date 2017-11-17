@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block content1 %}
+<title>
+Selection
+</title>
+{% endblock %}
+
+
+{% block content2 %}
+<center><body><h> TRIVIA </h1><br>
+<br><br>
+  <form action="/show" method = "POST" >
+    SELECT # Of Questions<br>
+    <input type="radio" name="num" value="5" checked='checked'> 5 <br>
+    <input type="radio" name="num" value="10"> 10<br>
+    <input type="radio" name="num" value="15"> 15 <br>
+    *Range of API is 1 - 50 <br><br>
+    SELECT Genre <br>
+    <input type="radio" name="genre" value="22" checked='checked'> Geography <br>
+    <input type="radio" name="genre" value="23"> History <br>
+    <input type="radio" name="genre" value="27"> Animals <br>
+    *Many more categories than this exist...check out the api.<br><br>
+    SELECT Difficulty <br>
+    <input type="radio" name="difficulty" value="easy" checked='checked'> easy <br>
+    <input type="radio" name="difficulty" value="medium"> medium <br>
+    <input type="radio" name="difficulty" value="hard"> hard <br><br>
+    SELECT Question Format<br>
+    <input type="radio" name="type" value="multiple" checked='checked'> Multiple Choice <br>
+    <input type="radio" name="type" value="boolean"> True/False <br><br>
+    <input type="submit" value="Submit">
+  </form><br>
+<br> <a href="/"> Back </a>
+</body></center>
+</html>
+
+{% endblock %}

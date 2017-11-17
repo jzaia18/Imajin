@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+{% block content1 %}
+<title>
+Login to Imajin!
+</title>
+{% endblock %}
+
+
+{% block content2 %}
+
+<br><br><br><br><br><br><br><br><br>
+<center>
+  <h1>Login Or Create A New Account!</h1>
+  <form method="POST">
+    Username:
+    <input type="text" name="username">
+    <br>
+    <br>
+    Password:
+    <input type="password" name="password">
+    <br>
+    <br>
+    <br>
+    <center>
+      <input type="submit" name="login" value="Login" style="width:150px; height:30px;">
+    </center>
+  </form>
+
+  <br>
+  <br>
+  <form method = 'GET' action = '/create'>
+    <center>
+      Don't have an account? Make one here!
+      <input type="submit" name="create" value="Create an account" style="width:150px; height:30px;">
+    </center>
+  </form>
+  <br>
+</center>
+
+{% endblock %}
