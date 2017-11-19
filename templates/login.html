@@ -14,7 +14,9 @@ Login to Imajin!
 <center>
   <h1>Login Or Create A New Account!</h1>
   {% set messages = get_flashed_messages() %}
-  {% for msg in messages %} {{ m }} {% endfor %}
+  {% for msg in messages %} 
+    {{ msg }} <!-- @Ish this should look red or indicate that it's an error --> 
+  {% endfor %}
   <form method="POST" action="/login">
     Username:
     <input type="text" name="username">

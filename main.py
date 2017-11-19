@@ -8,7 +8,7 @@ def root_route():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_logic():
-    if request.method == "GET":
+    if request.method == "GET": #filters POST requests
         return redirect(url_for("root_route"))
     uname = request.form.get("username", "")
     pword = request.form.get("password", "")
