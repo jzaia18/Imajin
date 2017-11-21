@@ -1,5 +1,6 @@
 from flask import Flask, render_template, session, redirect, url_for, request, flash
 import os
+import utils.getty as images
 
 
 app = Flask(__name__)
@@ -13,6 +14,7 @@ def loggedIn():
 
 @app.route('/')
 def root_route():
+    print images.search("hello")[0]
     return render_template("login.html")
 
 @app.route('/login', methods=['GET', 'POST'])
