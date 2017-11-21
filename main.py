@@ -32,6 +32,7 @@ def user_page():
 def view_high_scores():
     return "High scores template"
 
+#This is where the user selects a quiz genre
 @app.route('/select')
 def select_quiz():
     if not ('user' in session):
@@ -40,7 +41,7 @@ def select_quiz():
     else:
         return render_template("select.html")
 
-#select.html should redirect here
+#/select should redirect here, this is a functional route (no html)
 #this will set up cookies for the quiz then redirect to /play
 @app.route('/launch', methods=["POST"])
 def begin_quiz():
@@ -109,3 +110,11 @@ if __name__ == "__main__":
     app.debug = True
     app.secret_key = os.urandom(32)
     app.run()
+
+#Returns true if the session has necessary keys set when launching quiz
+def takingQuiz():
+    return set(['score', 'record', 'genre', 'difficulty', 'format']).issubset(session)
+
+#Returns true if the user is logged in by checking for that key
+def loggedIn():
+    return 'user' in session
