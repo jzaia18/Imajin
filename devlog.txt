@@ -12,3 +12,8 @@ jakeZ -- 2017-11-16 14:35
 
 - Added some dummy files, and the layout for the getty API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+maxZ -- 2017-11-19 14:51
+
+- Login authentication works with test accounts (username = password)
+- wrote basic outline of all routes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
