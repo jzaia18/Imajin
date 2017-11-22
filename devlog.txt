@@ -21,3 +21,8 @@ andrewW -- 2017-11-21 14:48
 
 - Made progress on database operations
 - Need to make test entries for sqlite table
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+jakeZ -- 2017-11-21 14:45
+
+- Updated README to conform to new standards
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

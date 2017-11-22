@@ -1,8 +1,7 @@
 # Imajin
 
-## What it is
+## What is it?
 Imajin is a trivia site that allows you to answer various trivia questions, and keeps a running score of your highest streak (in each category as well as mixed). In addition to displaying questions with selectable choices, Imajin will also generate an image relevant to the question to display near it for aesthetic effect.
-
 
 ## Dependencies
 * flask
