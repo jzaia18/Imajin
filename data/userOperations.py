@@ -23,33 +23,52 @@ def getHighscores(username): #user
     db, c = openDB()
     command = "SELECT highscores FROM Users WHERE username = '%s'" % (username)
     for i in c.execute(command):
-        highscore = i[0]
+        highscores = i[0]
     closeDB(db)
-    return highscore
+    return eval(highscores)
 
 def addHighscore(username, subject, score): #user, subject, score
     db, c = openDB()
-    command = ""
+    highscores = getHighscores(username)
+    print True
+    print highscores
+    highscores[subject] = score
+    print "also true"
+    print repr(highscores)
+    command = "UPDATE users SET '%s'" % (repr(highscores))
     c.execute(command)
     closeDB(db)
 
 def getUser(username):
     db, c = openDB()
-    command = "SELECT username FROM Users WHERE username = %s" % (username)
+    command = "SELECT username FROM Users WHERE username = '%s'" % (username)
     closeDB(db)
 
 def authUser(username, password): #user, password
     # assuming password is already passed in encrypted form
     db, c = openDB()
-    command = "SELECT * FROM Users where username = %s AND password = %s" % (username, password)
+    command = "SELECT * FROM Users where username = '%s' AND password = '%s'" % (username, password)
+    userList = c.execute(command)
+    for user in  userList:
+        print user
     closeDB(db)
-    return c.execute(command)[0]
+    return 'end of authUser'
+    # return username in 
 
 def addUser(username, password): #user, password
     db, c = openDB()
-    command = "INSERT INTO Users VALUES(%s, %s, '')" % (username, password)
+    command = "INSERT INTO Users VALUES('%s', '%s', '{}')" % (username, password)
     c.execute(command)
     closeDB(db)
 
-#createTable()
-print getHighscores('beep')
+if __name__ == "__main__":
+    db, c = openDB()
+    c.execute("CREATE TABLE Users(username TEXT PRIMARY KEY, password TEXT, highscores TEXT)")
+    closeDB(db)
+    addUser('beep', 123)
+    addHighscore('beep', 'math', 10)
+    print getHighscores('beep')
+    #print addUser('boop', 'abc')
+    #addHighscore('boop', 'history', 2)
+    #print authUser('beep', 123)
+   # addHighscore('beep', 'boop', 999) 
