@@ -1,18 +1,37 @@
 from flask import Flask, render_template, session, redirect, url_for, request, flash
 import os
+import random
 
 
 app = Flask(__name__)
+
 #Returns true if the session has necessary keys set when launching quiz
 def takingQuiz():
     return set(['score', 'record', 'genre', 'difficulty', 'format']).issubset(session)
+
 #Returns true if the user is logged in by checking for that key
 def loggedIn():
     return 'user' in session
 
+#Given a correct answer and a list of incorrect answers, will return a dictionary
+#of answer-code pairs. The key will be the text of the answer, and value will be its code
+#Correct answer will be divisible by 7, the rest will not
+def generateAnswers(correct, incorrect):
+    answers = {}
+    answers[correct] = 7 * random.randint(0, 100 / 7)
+    start = 1
+    end = 6
+    for answer in incorrect:
+        answers[answer] = 3 * random.randint(start, end) #inclusive of both ends
+        start += 7
+        end += 7
+    return answers
+
 
 @app.route('/')
 def root_route():
+    for x in range(0, 20):
+        print generateAnswers("Yes", ["False", "No", "Wrong"])
     return render_template("login.html")
 
 @app.route('/login', methods=['GET', 'POST'])
