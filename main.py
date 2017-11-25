@@ -27,11 +27,13 @@ def generateAnswers(correct, incorrect):
         end += 7
     return answers
 
+#Will replace this with a call to the actual API. Should return question, correct and incorrect
+def trivia(category, difficulty, type):
+    return ["When did America win independence?", "1776", "2017"]
+
 
 @app.route('/')
 def root_route():
-    for x in range(0, 20):
-        print generateAnswers("Yes", ["False", "No", "Wrong"])
     return render_template("login.html")
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -102,7 +104,10 @@ def take_quiz():
         1) get question using trivia api
         2) render the template
         """
-        return "This page displays one question"
+        question_data = trivia(session["genre"], session["difficulty"], session["format"])
+        q = question_data[0]
+        a = generateAnswers(question_data[1], question_data[2:])
+        return render_template("qtest.html", question=q, answers=a)
 
 #selecting an answer to a question in /play sends you here
 #if you got it right, sends to /play to answer another
@@ -120,7 +125,13 @@ def check_answer():
         2) if it is divisible by 7, then add to score and redirect to /play
         3) if it is not, then redirect to /results
         """
-        return "This route should not be accessed by users"
+        answer_code = int(request.form.get("answer", "3"))
+        print answer_code
+        if answer_code % 7 == 0:
+            session["score"] = int(session["score"]) + 1
+            return redirect(url_for("take_quiz"))
+        else:
+            return redirect(url_for("score_report"))
 
 #Getting a question wrong sends you here
 @app.route('/results')
