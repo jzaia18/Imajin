@@ -37,7 +37,7 @@ def trivia(category, difficulty, type):
 def root_route():
     return render_template("login.html")
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/user/login', methods=['GET', 'POST'])
 def login_logic():
     if request.method == "GET": #filters POST requests
         return redirect(url_for("root_route"))
@@ -50,7 +50,7 @@ def login_logic():
         flash("Wrong username or password")
         return redirect(url_for("root_route"))
 
-@app.route('/home')
+@app.route('/user/home')
 def user_page():
     if not loggedIn():
         flash("Must be logged in to view home page")
@@ -58,7 +58,7 @@ def user_page():
     else:
         return render_template("user.html", username=session['user'])
 
-@app.route('/scores')
+@app.route('/user/scores')
 def view_high_scores():
     if not loggedIn():
         flash("Must be logged in to view your scores")
@@ -67,7 +67,7 @@ def view_high_scores():
         return render_template("records.html", username=session['user'], scores=users.getHighscores(session['user']))
 
 #This is where the user selects a quiz genre
-@app.route('/select')
+@app.route('/quiz/select')
 def select_quiz():
     if not loggedIn():
         flash("Must be logged in to take a quiz")
@@ -77,7 +77,7 @@ def select_quiz():
 
 #/select should redirect here, this is a functional route (no html)
 #this will set up cookies for the quiz then redirect to /play
-@app.route('/launch', methods=["POST"])
+@app.route('/quiz/launch', methods=["POST"])
 def begin_quiz():
     if not loggedIn():
         flash("Must be logged in to take a quiz")
@@ -92,7 +92,7 @@ def begin_quiz():
         return redirect(url_for("take_quiz"))
 
 #Displays a question and when the user answers it redirects to /check with the answer choice ID
-@app.route('/play')
+@app.route('/quiz/play')
 def take_quiz():
     if not loggedIn():
         flash("Must be logged in to take a quiz")
@@ -108,11 +108,11 @@ def take_quiz():
         question_data = trivia(session["genre"], session["difficulty"], session["format"])
         q = question_data[0]
         a = generateAnswers(question_data[1], question_data[2:])
-        return render_template("qtest.html", question=q, answers=a)
+        return render_template("question.html", question=q, answers=a)
 
 #selecting an answer to a question in /play sends you here
 #if you got it right, sends to /play to answer another
-@app.route('/check', methods=["POST"])
+@app.route('/quiz/check', methods=["POST"])
 def check_answer():
     if not loggedIn():
         flash("Must be logged in to take a quiz")
@@ -135,7 +135,7 @@ def check_answer():
             return redirect(url_for("score_report"))
 
 #Getting a question wrong sends you here
-@app.route('/results')
+@app.route('/quiz/results')
 def score_report():
     if not loggedIn():
         flash("Must be logged in to view this page")
@@ -150,7 +150,7 @@ def score_report():
         return "You got " + str(score) + " correct answers"
 
 #Log out route, redirects to home page when done
-@app.route('/logout')
+@app.route('/user/logout')
 def logout():
     if 'user' in session:
         session.pop("user")

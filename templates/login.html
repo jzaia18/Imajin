@@ -17,7 +17,7 @@ Login to Imajin!
   {% for msg in messages %} 
     {{ msg }} <!-- @Ish this should look red or indicate that it's an error --> 
   {% endfor %}
-  <form method="POST" action="/login">
+  <form method="POST" action="/user/login">
     Username:
     <input type="text" name="username">
     <br>
