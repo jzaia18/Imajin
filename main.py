@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session, redirect, url_for, request, flash
-import os
+import utils.userOperations as users
 import random
+import os
 
 
 app = Flask(__name__)
@@ -42,7 +43,7 @@ def login_logic():
         return redirect(url_for("root_route"))
     uname = request.form.get("username", "")
     pword = request.form.get("password", "")
-    if uname == pword: #replace with login validation function
+    if users.authUser(uname, pword):
         session["user"] = uname
         return redirect(url_for("user_page"))
     else:
@@ -63,7 +64,7 @@ def view_high_scores():
         flash("Must be logged in to view your scores")
         return redirect(url_for("root_route"))
     else:
-        return "High scores template"
+        return render_template("records.html", username=session['user'], scores=users.getHighscores(session['user']))
 
 #This is where the user selects a quiz genre
 @app.route('/select')
