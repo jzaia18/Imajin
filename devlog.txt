@@ -26,3 +26,6 @@ jakeZ -- 2017-11-21 14:45
 
 - Updated README to conform to new standards
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+andrewW -- 2017-11-26 11:23
+
+- userOperations nearly complete
