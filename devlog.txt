@@ -11,6 +11,9 @@ jakeZ -- 2017-11-15 19:15
 jakeZ -- 2017-11-16 14:35
 
 - Added some dummy files, and the layout for the getty API
+
+ishM -- 2017-11-16 14:00
+-Added all basic stuff for html and got forms ready.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 maxZ -- 2017-11-19 14:51
 
