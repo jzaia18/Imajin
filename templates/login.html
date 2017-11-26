@@ -10,12 +10,12 @@ Login to Imajin!
 
 {% block content2 %}
 
-<br><br><br><br><br><br><br><br><br>
+<br>
 <center>
-  <h1>Login Or Create A New Account!</h1>
+  <h1>Login</h1>
   {% set messages = get_flashed_messages() %}
-  {% for msg in messages %} 
-    {{ msg }} <!-- @Ish this should look red or indicate that it's an error --> 
+  {% for msg in messages %}
+    {{ msg }} <!-- @Ish this should look red or indicate that it's an error -->
   {% endfor %}
   <form method="POST" action="/user/login">
     Username:
@@ -31,15 +31,23 @@ Login to Imajin!
       <input type="submit" name="login" value="Login" style="width:150px; height:30px;">
     </center>
   </form>
-
-  <br>
-  <br>
-  <form method = 'GET' action = '/create'>
+  <h1> Create a New Account! </h1>
+  <form method="POST" action="/user/new">
+    Username:
+    <input type="text" name="username">
+    <br>
+    <br>
+    Password:
+    <input type="password" name="password">
+    <br>
+    <br>
+    <br>
     <center>
-      Don't have an account? Make one here!
-      <input type="submit" name="create" value="Create an account" style="width:150px; height:30px;">
+      <input type="submit" name="login" value="Login" style="width:150px; height:30px;">
     </center>
-  </form>
+   </form>
+
+
   <br>
 </center>
 
