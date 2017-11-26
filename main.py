@@ -29,8 +29,12 @@ def generateAnswers(correct, incorrect):
     return answers
 
 #Will replace this with a call to the actual API. Should return question, correct and incorrect
-def trivia(category, difficulty, type):
+def trivia(subject, difficulty, type):
     return ["When did America win independence?", "1776", "2017"]
+
+#Will replace this with a call to trivia.py
+def code2Subject(code):
+    return "Geography"
 
 
 @app.route('/')
@@ -84,9 +88,9 @@ def begin_quiz():
         return redirect(url_for("root_route"))
     else:
         #set up cookies for quiz
-        session["score"] = str(0)
-        session['record'] = 0 #replace with call to DB to get high score
+        session["score"] = 0
         session['genre'] = request.form.get("genre", "22") #geography by default
+        session['record'] = users.getHighscore(session['user'], code2Subject(int(session['genre'])))
         session['difficulty'] = request.form.get("difficulty", "easy") #easy by default
         session['format'] = request.form.get("type", "multiple") #multiple choice by default
         return redirect(url_for("take_quiz"))
@@ -144,10 +148,14 @@ def score_report():
         flash("You must take a quiz to see the score")
         return redirect(url_for("user_page"))
     else:
-        score = int(session.get("score", "0"))
-        high = int(session.get("record", "0"))
+        who = session["user"]
+        score = int(session["score"])
+        record = int(session["record"])
+        subject = code2Subject(int(session["genre"]))
+        if score > record:
+            users.addHighscore(who, subject, score)
         #render a template telling the user their score
-        return "You got " + str(score) + " correct answers"
+        return render_template("score.html", username=who, subject=subject, record=record, score=score, quote="Inspirational quote")
 
 #Log out route, redirects to home page when done
 @app.route('/user/logout')

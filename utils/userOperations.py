@@ -29,6 +29,13 @@ def getHighscores(username):
     closeDB(db)
     return highscores
 
+def getHighscore(username, subject):
+    scores = getHighscores(username)
+    if subject in scores:
+        return scores[subject]
+    else:
+        return 0
+
 def addHighscore(username, subject, score): #user, subject, score
     db, c = openDB()
     highscores = getHighscores(username)
