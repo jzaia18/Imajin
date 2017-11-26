@@ -23,18 +23,17 @@ def getHighscores(username):
     # returns user's highscores formatted as a dictionary
     db, c = openDB()
     command = "SELECT highscores FROM Users WHERE username = '%s'" % (username)
+    highscores = {}
     for i in c.execute(command):
-        highscores = i[0]
+        highscores = eval(i[0])
     closeDB(db)
-    return eval(highscores)
+    return highscores
 
 def addHighscore(username, subject, score): #user, subject, score
     db, c = openDB()
     highscores = getHighscores(username)
     highscores[subject] = score
-    #print highscores, 'orig'
-    #print repr(highscores), 'repr'
-    command = "UPDATE users SET '%s'" % (highscores)
+    command = "UPDATE Users SET highscores = '%s' WHERE username = '%s'" % (repr(highscores).replace("'", "''"), username) #escaping quotes in dict representation
     c.execute(command)
     closeDB(db)
 
@@ -56,10 +55,12 @@ def addUser(username, password): #user, password
     c.execute(command)
     closeDB(db)
 
-if __name__ == "__main__":
-    #createTable()
-    #addUser('beep', 123)
-    #addHighscore('beep', 'math', 10)
-    print getHighscores('beep')
-    print authUser('beep', 123)
-    addHighscore('boop', 'history', 2)
+    
+# if __name__ == "__main__":
+    # #createTable()
+    # addUser('bam', 999)
+    # #addHighscore('beep', 'math', 10)
+    # print getHighscores('beep')
+    # print authUser('beep', 123)
+    # addHighscore('boop', 'history', 2)
+    # print getHighscores('boop')
