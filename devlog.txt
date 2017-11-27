@@ -29,11 +29,21 @@ jakeZ -- 2017-11-21 14:45
 
 - Updatellod README to conform to new standards
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+maxZ -- 2017-11-21 14:45
+
+- wrote stumps to test quiz taking
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 andrewW -- 2017-11-26 11:23
 
 - userOperations nearly complete
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ishM -- 2017-11-28 0:58
+maxZ -- 2017-11-26 20:04
+
+- devised system to keep track of right answer
+- integrated database functionality with front-end
+- integrated Trivia api with Flask front-end
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ishM -- 2017-11-26 0:58
 
 -Basic HTML finished and compatible with main.py
 -Trivia api file is finished. Allows for easy api interaction.
