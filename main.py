@@ -29,6 +29,13 @@ def generateAnswers(correct, incorrect):
         end += 7
     return answers
 
+def randomizeAnswers(answers):
+    ansList = []
+    for key in sorted(answers):
+        ansList.append([key, answers[key]])
+    return ansList
+    
+
 #Will replace this with a call to trivia.py
 def code2Subject(code):
     return trivia.codes[str(code)]
@@ -138,7 +145,7 @@ def take_quiz():
             flash("You have answered all the questions in this category")
             return redirect(url_for("score_report"))
         q = question_data[0]
-        a = generateAnswers(question_data[1], question_data[2:])
+        a = randomizeAnswers(generateAnswers(question_data[1], question_data[2:]))
         return render_template("question.html", question=q, answers=a)
 
 #selecting an answer to a question in /play sends you here
