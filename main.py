@@ -1,5 +1,6 @@
 from flask import Flask, render_template, session, redirect, url_for, request, flash
 import utils.userOperations as users
+import utils.trivia as trivia
 import random
 import os
 
@@ -27,10 +28,6 @@ def generateAnswers(correct, incorrect):
         start += 7
         end += 7
     return answers
-
-#Will replace this with a call to the actual API. Should return question, correct and incorrect
-def trivia(subject, difficulty, type):
-    return ["When did America win independence?", "1776", "2017"]
 
 #Will replace this with a call to trivia.py
 def code2Subject(code):
@@ -136,7 +133,10 @@ def take_quiz():
         1) get question using trivia api
         2) render the template
         """
-        question_data = trivia(session["genre"], session["difficulty"], session["format"])
+        question_data = trivia.gimmie(session["genre"], session["difficulty"], session["format"])
+        if len(question_data) == 0: #error getting question
+            flash("You have answered all the questions in this category")
+            return redirect(url_for("score_report"))
         q = question_data[0]
         a = generateAnswers(question_data[1], question_data[2:])
         return render_template("question.html", question=q, answers=a)
@@ -159,10 +159,12 @@ def check_answer():
         """
         answer_code = int(request.form.get("answer", "3"))
         print answer_code
-        if answer_code % 7 == 0:
+        if answer_code % 7 == 0: #correct
             session["score"] = int(session["score"]) + 1
+            flash("You answered the last question correctly")
             return redirect(url_for("take_quiz"))
-        else:
+        else: #wrong
+            flash("You ended your streak by not selecting the correct answer to the last question.")
             return redirect(url_for("score_report"))
 
 #Getting a question wrong sends you here

@@ -6,12 +6,14 @@
 {% endblock %}
 
 {% block content2 %}
-<h1> {{ question }} </h1>
 
+<!-- This should be success -->
 {% set messages = get_flashed_messages() %}
 {% for msg in messages %}
-    <b>msg</b><br>
+    <b>{{ msg }}</b><br>
 {% endfor %}
+
+<h1> {{ question }} </h1>
 
 <form action="/quiz/check" method="POST">
     {% for a in answers %}

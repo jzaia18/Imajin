@@ -25,6 +25,6 @@ def gimmie(genre, difficulty, Type):
                 questions.append(results[i]["question"])
                 answers.append(results[i]["correct_answer"])
                 incorrect.append(results[i]['incorrect_answers'])
-            return questions + answers + incorrect
+            return [questions[0], answers[0]] + incorrect[0]
         else:
-            return ["Something Went wrong", "", ""]
+            return []
