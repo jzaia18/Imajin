@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content1 %}
+<title>High Scores</title>
+{% endblock %}
+
+{% block content2 %}
+<!-- This is the page you can access from your profile, it tells you your high scores in all subjects -->
+<h1>{{ username }}'s highest scores</h1>
+<table>
+    <tr><th>Subject</th><th>High Score</th></tr>
+{% for subject in scores %}
+    <tr>
+        <td>{{ subject }}</td>
+        <td>{{ scores[subject] }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

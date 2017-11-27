@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content1 %}
+<title>Score Report</title>
+{% endblock %}
+
+{% block content2 %}
+<!-- This is the page you get taken to when the quiz ends -->
+<h1>Woohoo!</h1>
+
+
+{% set messages = get_flashed_messages() %}
+{% for msg in messages %}
+    <p>{{ msg }}</p>
+{% endfor %}
+
+<p>Questions answered correctly: {{ score }}<br>{{ subject }} High Score: {{ record }}</p>
+{% if score > record %}
+    <p>But you set a new high score! Congratulations, {{ username }}, you are a {{ subject }} expert.</p>
+{% else %}
+    <!-- Inspirational quote -->
+    <p>{{ quote }}</p>
+    <!-- Inspirational message -->
+    <p>You will keep getting better at {{ subject }}. Look how far you have come!</p>
+{% endif %}
+{% endblock %}

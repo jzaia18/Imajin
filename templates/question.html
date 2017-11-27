@@ -2,32 +2,24 @@
 
 
 {% block content1 %}
-<title>
-TRIVIA
-</title>
+<title>TRIVIA</title>
 {% endblock %}
 
 {% block content2 %}
-<center><body><h> Results </h1><br><br>
-DEMO OF API - Full Demonstration of this api takes a lot of time
-<br><br>
-Questions: <br><br>
-  {% for i in Q %}
-      {{i}} <br>
-  {% endfor %}
-<br>
-Answers in order:<br><br>
-  {% for i in A %}
-      {{i}} <br>
-  {% endfor %}
-<br>
-Incorrect choices in order:<br><br>
-  {% for i in B %}
-      {{i}} <br>
-  {% endfor %}
-<br>
-<br> <a href="/show"> Back </a>
-</body></center>
-</html>
+
+<!-- This should be success -->
+{% set messages = get_flashed_messages() %}
+{% for msg in messages %}
+    <b>{{ msg }}</b><br>
+{% endfor %}
+
+<h1> {{ question }} </h1>
+
+<form action="/quiz/check" method="POST">
+    {% for a in answers %}
+        <input type="radio" name="answer" value="{{ answers[a] }}">{{ a }} <br>
+    {% endfor %}
+    <input type="submit" name="submit" value="Check Answer">
+</form>
 
 {% endblock %}
