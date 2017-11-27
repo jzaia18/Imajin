@@ -31,7 +31,7 @@ def generateAnswers(correct, incorrect):
 
 #Will replace this with a call to trivia.py
 def code2Subject(code):
-    return "Geography"
+    return trivia.codes[str(code)]
 
 
 @app.route('/')
@@ -101,7 +101,7 @@ def select_quiz():
         flash("Must be logged in to take a quiz")
         return redirect(url_for("root_route"))
     else:
-        return render_template("select.html", username=session['user'])
+        return render_template("select.html", username=session['user'], subjects=trivia.subjects)
 
 #/select should redirect here, this is a functional route (no html)
 #this will set up cookies for the quiz then redirect to /play

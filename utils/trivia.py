@@ -28,3 +28,15 @@ def gimmie(genre, difficulty, Type):
             return [questions[0], answers[0]] + incorrect[0]
         else:
             return []
+
+csv_file = open("static/numbers.csv", 'r')
+csv_string = csv_file.read()
+csv_file.close()
+rows = csv_string.split("\n")
+codes = {}
+subjects = {}
+for row in rows:
+    subject = row.split(",")[0]
+    code = row.split(",")[1]
+    codes[code] = subject
+    subjects[subject] = code
