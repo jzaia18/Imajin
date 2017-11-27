@@ -17,7 +17,7 @@
 
 <form action="/quiz/check" method="POST">
     {% for a in answers %}
-        <input type="radio" name="answer" value="{{ answers[a] }}">{{ a }} <br>
+        <input type="radio" name="answer" value="{{ a[1] }}">{{ a[0] }} <br>
     {% endfor %}
     <input type="submit" name="submit" value="Check Answer">
 </form>
