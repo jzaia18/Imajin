@@ -2,16 +2,16 @@ import urllib2
 import json
 
 
-def gimmie(genre, difficulty, type):
+def gimmie(genre, difficulty, Type):
         num = 1
-    #    amount = "amount=1&"
-    #    category = "category" + "=" + request.form["genre"] + "&"
-    #    difficulty = "difficulty" + "=" + request.form["difficulty"] + "&"
-    #    Type = "type" + "=" + request.form["type"]
-    #    layout = request.form["type"]
+        amount = "amount=1&"
+        category = "category" + "=" + genre + "&"
+        difficulty = "difficulty" + "=" + difficulty + "&"
+        Type1 = "type" + "=" + Type
+        layout = Type
 
-        #snippet = amount + category + difficulty + Type
-        snippet = 'amount=1&category=22&difficulty=easy&type=multiple'
+        snippet = amount + category + difficulty + Type1
+        #snippet = 'amount=1&category=22&difficulty=easy&type=multiple'
 
         u = urllib2.urlopen("https://opentdb.com/api.php?" + snippet)
         data_string = u.read()
@@ -25,8 +25,6 @@ def gimmie(genre, difficulty, type):
                 questions.append(results[i]["question"])
                 answers.append(results[i]["correct_answer"])
                 incorrect.append(results[i]['incorrect_answers'])
-            print questions + answers + incorrect
+            return questions + answers + incorrect
         else:
-            print "Sorry, we don't have enough of those questions. Try again!"
-
-gimmie(1,1,1)
+            return ["Something Went wrong", "", ""]
