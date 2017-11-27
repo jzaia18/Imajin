@@ -54,6 +54,33 @@ def login_logic():
         flash("Wrong username or password")
         return redirect(url_for("root_route"))
 
+@app.route('/user/new', methods=['POST'])
+def join_logic():
+    if not ('username' in request.form):
+        flash("You must enter a username to create an account")
+        return redirect(url_for("root_route"))
+    elif not ('password' in request.form) or len(request.form["password"]) == 0:
+        flash("You must enter a password to create an account")
+        return redirect(url_for("root_route"))
+    elif not ('password2' in request.form):
+        flash("You must confirm your password to create an account")
+        return redirect(url_for("root_route"))
+    else:
+        uname = request.form["username"]
+        pword = request.form["password"]
+        confirm = request.form["password2"]
+        if users.exists(uname):
+            flash("This username is taken")
+            return redirect(url_for("root_route"))
+        elif pword != confirm:
+            flash("The passwords must match")
+            return redirect(url_for("root_route"))
+        else:
+            users.addUser(uname, pword)
+            flash("Sucessfully created the account %s, you may now login" % uname)
+            return redirect(url_for("root_route"))
+    return redirect(url_for("root_route")) #this should never happen
+
 @app.route('/user/home')
 def user_page():
     if not loggedIn():

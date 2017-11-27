@@ -62,6 +62,15 @@ def addUser(username, password): #user, password
     c.execute(command)
     closeDB(db)
 
+def exists(username):
+    db, c = openDB()
+    username = username.replace("'", "''")
+    command = "SELECT username FROM Users WHERE username = '%s';" % (username)
+    c.execute(command)
+    result = c.fetchone()
+    closeDB(db)
+    return result != None
+
     
 # if __name__ == "__main__":
     # #createTable()
