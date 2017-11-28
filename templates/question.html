@@ -21,5 +21,7 @@
     {% endfor %}
     <input type="submit" name="submit" value="Check Answer">
 </form>
-
+{% for url in image %}
+    <img src="{{ url }}"/>
+{% endfor %}
 {% endblock %}
