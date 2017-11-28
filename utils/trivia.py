@@ -1,3 +1,4 @@
+from HTMLParser import HTMLParser
 import urllib2
 import json
 
@@ -19,11 +20,12 @@ def gimmie(genre, difficulty, Type):
         questions = []
         answers = []
         incorrect = []
+        h = HTMLParser()
         if dic['response_code'] == 0:
             results = dic["results"]
             for i in range(num):
-                questions.append(results[i]["question"])
-                answers.append(results[i]["correct_answer"])
+                questions.append(h.unescape( results[i]["question"] ))
+                answers.append(h.unescape( results[i]["correct_answer"] ))
                 incorrect.append(results[i]['incorrect_answers'])
             return [questions[0], answers[0]] + incorrect[0]
         else:
