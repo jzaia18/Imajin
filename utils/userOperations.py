@@ -1,5 +1,5 @@
 import sqlite3   # enable control of an sqlite database
-import hashlib   # allows for passwords to be encrypted
+import hashlib   # allows for passwords to be encrypted and decrypted
 import ast       # for getting strings out of dicts and vice versa
 
 f = "data/dingbubble.db"
@@ -45,9 +45,8 @@ def addHighscore(username, subject, score): #user, subject, score
     closeDB(db)
 
 def authUser(username, password): #user, password
-    # assuming password is passed in encrypted form
     db, c = openDB()
-    command = "SELECT * FROM Users where username = '%s' AND password = '%s'" % (username, password)
+    command = "SELECT * FROM Users where username = '%s' AND password = '%s'" % (username, hashlib.md5(str(password)).hexdigest())
     user = ''
     for user in c.execute(command): # returns either 1 or 0 entries
         pass # sets user to the entry if it exists
@@ -58,7 +57,7 @@ def authUser(username, password): #user, password
 
 def addUser(username, password): #user, password
     db, c = openDB()
-    command = "INSERT INTO Users VALUES('%s', '%s', '{}')" % (username, password)
+    command = "INSERT INTO Users VALUES('%s', '%s', '{}')" % (username, hashlib.md5(str(password)).hexdigest())
     c.execute(command)
     closeDB(db)
 
@@ -70,13 +69,15 @@ def exists(username):
     result = c.fetchone()
     closeDB(db)
     return result != None
-
     
-# if __name__ == "__main__":
-    # #createTable()
-    # addUser('bam', 999)
-    # #addHighscore('beep', 'math', 10)
-    # print getHighscores('beep')
-    # print authUser('beep', 123)
-    # addHighscore('boop', 'history', 2)
-    # print getHighscores('boop')
+#if __name__ == "__main__":
+#    createTable()
+#    addUser('beep', 123)
+#    addUser('boop', 'abc')
+#    addUser('ish', 'ish')
+#    addUser('jaek', 'hello')
+#    addHighscore('ish', 'Animals', 2)
+#    addHighscore('ish', 'Geography', 6)
+#    addHighscore('jaek', 'Geography', 9)
+#    print getHighscores('ish')
+#    print authUser('beep', 123)
