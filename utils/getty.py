@@ -36,7 +36,7 @@ def list_urls(phrase):
 
 def search(phrase):
     #prepositions and articles
-    fillers = "the a an about above across after against along alongside amid among are around as at before behind below between but by did do does down during featured features following for from got had has have how in inside into is less like long longest many more much near never no not of off on onto opposite out outside over short shortest since than through to toward towards under underneath unlike until up upon versus via was were what when which why within without you".split(" ")
+    fillers = "the a an about above acronym across after against along alongside amid among are around as at before behind below between but by call called calls derisive did do does down during featured features following for from got had has have how if in inside into is known less like long longest many more much name named names near never no not of off on onto opposite out outside over short shortest since than that these this those through to toward towards under underneath unlike until up upon versus via was were what when which why within without you".split(" ")
     #so that every word has a space in front of it
     phrase = " " + phrase.lower() + " "
     #get rid of punctuation

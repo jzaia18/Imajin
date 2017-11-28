@@ -151,10 +151,9 @@ def take_quiz():
             return redirect(url_for("score_report"))
         q = question_data[0]
         a = randomizeAnswers(generateAnswers(question_data[1], question_data[2:]))
-        url = images.search(q)
-        if len(url) > 10:
-            url = url[:10]
-        return render_template("question.html", question=q, answers=a, image=url)
+        list_urls = images.search(q)[:10]
+        print "len: " + str(len(list_urls))
+        return render_template("question.html", question=q, answers=a, urls=list_urls)
 
 #selecting an answer to a question in /play sends you here
 #if you got it right, sends to /play to answer another
