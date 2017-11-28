@@ -48,5 +48,10 @@ ishM -- 2017-11-26 0:58
 -Basic HTML finished and compatible with main.py
 -Trivia api file is finished. Allows for easy api interaction.
 -Bootstraping process initiated
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+maxZ -- 2017-11-27 21:00
+
+- added support for getty image api
+- made getty api produce better search results
 
 
