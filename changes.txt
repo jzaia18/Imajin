@@ -1,0 +1,1 @@
+There were few major changes to the design. The primary change being that repr() and eval() will be used to store scores in the database instead of some other form of representation, as well as a slight adjustment to how the front end behaves.

@@ -7,6 +7,11 @@ Imajin is a trivia site that allows you to answer various trivia questions, and 
 * flask
   * ``` $ pip install flask```
 
+
+## Api Keys
+* An API key for OpenTrivia is required and must be stored within static/.apikey
+
+
 ## Launch Instructions
 1. Clone the repository: ``` $ git clone https://github.com/jzaia18/Imajin.git```
 2. Enter the directory: ``` $ cd Imajin ```

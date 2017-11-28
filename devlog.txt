@@ -57,4 +57,4 @@ maxZ -- 2017-11-27 21:00
 jakeZ -- 2017-11-28 26:38
 
 - Gave frontend a small facelift (Main page & Take a Quiz page)
-
+- Updated README
