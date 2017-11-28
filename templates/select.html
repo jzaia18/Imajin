@@ -3,31 +3,60 @@
 
 {% block content1 %}
 <title>
-Selection
+  Selection
 </title>
 {% endblock %}
 
 
 {% block content2 %}
-<center><body><h> TRIVIA </h1><br>
-<br><br>
+<center>
+  <h1> Imajin </h1>
+  <h4> Please select the content of your quiz </h4>
   <form action="/quiz/launch" method = "POST" >
-    SELECT Genre <br>
-    <input type="radio" name="genre" value="22" checked='checked'> Geography <br>
-    <input type="radio" name="genre" value="23"> History <br>
-    <input type="radio" name="genre" value="27"> Animals <br>
-    *Many more categories than this exist...check out the api.<br><br>
-    SELECT Difficulty <br>
-    <input type="radio" name="difficulty" value="easy" checked='checked'> easy <br>
-    <input type="radio" name="difficulty" value="medium"> medium <br>
-    <input type="radio" name="difficulty" value="hard"> hard <br><br>
-    SELECT Question Format<br>
+
+    <hr> <h3> Genre </h3>
+
+    <select class="selectpicker" data-live-search="true" name="trivia_category" >
+      <option value="any">Any Category</option>
+      <option value="9">General Knowledge</option>
+      <option value="10">Entertainment: Books</option>
+      <option value="11">Entertainment: Film</option>
+      <option value="12">Entertainment: Music</option>
+      <option value="13">Entertainment: Musicals &amp; Theatres</option>
+      <option value="14">Entertainment: Television</option>
+      <option value="15">Entertainment: Video Games</option>
+      <option value="16">Entertainment: Board Games</option>
+      <option value="17">Science &amp; Nature</option>
+      <option value="18">Science: Computers</option>
+      <option value="19">Science: Mathematics</option>
+      <option value="20">Mythology</option>
+      <option value="21">Sports</option>
+      <option value="22">Geography</option>
+      <option value="23">History</option>
+      <option value="24">Politics</option>
+      <option value="25">Art</option>
+      <option value="26">Celebrities</option>
+      <option value="27">Animals</option>
+      <option value="28">Vehicles</option>
+      <option value="29">Entertainment: Comics</option>
+      <option value="30">Science: Gadgets</option>
+      <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
+      <option value="32">Entertainment: Cartoon &amp; Animations</option>
+    </select>
+    <br />
+
+    <hr> <h3> Difficulty </h3>
+    <input type="radio" name="difficulty" value="easy" checked='checked'> easy    <input type="radio" name="difficulty" value="medium"> medium
+    <input type="radio" name="difficulty" value="hard"> hard
+    <br />
+
+    <hr> <h3> Question Format </h3>
     <input type="radio" name="type" value="multiple" checked='checked'> Multiple Choice <br>
     <input type="radio" name="type" value="boolean"> True/False <br><br>
-    <input type="submit" value="Submit">
-  </form><br>
-<br> <a href="/"> Back </a>
-</body></center>
-</html>
 
+    <hr>
+    <a href="/"> Back </a>
+    <input type="submit" value="I'm ready!">
+  </form>
+</center>
 {% endblock %}
