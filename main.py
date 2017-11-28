@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session, redirect, url_for, request, flash
 import utils.userOperations as users
 import utils.trivia as trivia
+import utils.getty as images
 import random
 import os
 import utils.getty as images
@@ -34,6 +35,8 @@ def randomizeAnswers(answers):
     ansList = []
     for key in sorted(answers):
         ansList.append([key, answers[key]])
+    if len(ansList) == 2: #reverse
+        ansList = ansList[::-1]
     return ansList
     
 
@@ -148,7 +151,10 @@ def take_quiz():
             return redirect(url_for("score_report"))
         q = question_data[0]
         a = randomizeAnswers(generateAnswers(question_data[1], question_data[2:]))
-        return render_template("question.html", question=q, answers=a)
+        url = images.search(q)
+        if len(url) > 10:
+            url = url[:10]
+        return render_template("question.html", question=q, answers=a, image=url)
 
 #selecting an answer to a question in /play sends you here
 #if you got it right, sends to /play to answer another
