@@ -6,9 +6,9 @@
 
 {% block content2 %}
 <!-- This is the page you can access from your profile, it tells you your high scores in all subjects -->
-<h1>{{ username }}'s highest scores</h1>
-<table>
-    <tr><th>Subject</th><th>High Score</th></tr>
+<h1>Your Record Scores</h1>
+<table class="table table-striped" style="width: 600px;">
+  <tr><th>Subject</th><th>High Score</th></tr>
 {% for subject in scores %}
     <tr>
         <td>{{ subject }}</td>

@@ -6,21 +6,28 @@
 
 {% block content2 %}
 <!-- This is the page you get taken to when the quiz ends -->
-<h1>Woohoo!</h1>
-
+<h1> Your Results </h1>
+<hr>
 
 {% set messages = get_flashed_messages() %}
 {% for msg in messages %}
-    <p>{{ msg }}</p>
+<p>{{ msg }}</p>
 {% endfor %}
 
-<p>Questions answered correctly: {{ score }}<br>{{ subject }} High Score: {{ record }}</p>
+<h4>
+  Your Score: {{ score }} question streak<br>
+  Your High Score (for {{ subject }}): {{ record }} questions
+</h4>
+
 {% if score > record %}
-    <p>But you set a new high score! Congratulations, {{ username }}, you are a {{ subject }} expert.</p>
+That's a new person high score! Congratulations, {{ username }}, you're really an expert in {{ subject }}.
 {% else %}
-    <!-- Inspirational quote -->
-    <p>{{ quote }}</p>
-    <!-- Inspirational message -->
-    <p>You will keep getting better at {{ subject }}. Look how far you have come!</p>
+
+<br />
+<!-- Inspirational quote -->
+<p style="font-style: italic;">{{ quote }}</p>
 {% endif %}
+<br />
+<p> Time to get even better at {{ subject }}, <a href="/quiz/select"> Take another quiz </a></p>
+
 {% endblock %}

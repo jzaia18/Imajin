@@ -131,7 +131,7 @@ def begin_quiz():
     else:
         #set up cookies for quiz
         session["score"] = 0
-        session['genre'] = request.form.get("genre", "22") #geography by default
+        session['genre'] = request.form.get("genre", str(random.randint(9, 32)))
         session['record'] = users.getHighscore(session['user'], code2Subject(int(session['genre'])))
         session['difficulty'] = request.form.get("difficulty", "easy") #easy by default
         session['format'] = request.form.get("type", "multiple") #multiple choice by default
