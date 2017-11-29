@@ -1,3 +1,18 @@
 body {
     background-color: lightsteelblue;
 }
+
+.carousel-inner img {
+  margin: auto;
+}
+
+.button1 {
+    background-color: lightsteelblue;
+    color: black;
+    border: 2px solid #555555;
+}
+
+.button1:hover {
+    background-color: #555555;
+    color: white;
+}
