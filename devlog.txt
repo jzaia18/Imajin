@@ -60,5 +60,10 @@ jakeZ -- 2017-11-28 26:38
 - Updated README
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ishM -- 2017-11-29 20:10
--Finished the sideshow looping urls from Getty Api
--Added BootStrap to slideshow
+
+- Finished the sideshow looping urls from Getty Api
+- Added BootStrap to slideshow
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+jakeZ -- 2017-11-29 23:04
+
+- Fixed a problem involving the carousel resizing itself
