@@ -7,6 +7,7 @@ import os
 import utils.getty as images
 
 
+
 app = Flask(__name__)
 
 #Returns true if the session has necessary keys set when launching quiz
@@ -31,6 +32,7 @@ def generateAnswers(correct, incorrect):
         end += 7
     return answers
 
+#randomizes the result of generateAnswers() returns a list of pairs
 def randomizeAnswers(answers):
     ansList = []
     for key in sorted(answers):
@@ -38,11 +40,15 @@ def randomizeAnswers(answers):
     if len(ansList) == 2: #reverse
         ansList = ansList[::-1]
     return ansList
-    
+
+#Returns a random motivational quote
+def randomQuote():
+    return random.choice(['"It does not matter how slowly you go so long as you do not stop" --Confucius', '"Good, better, best. Never let it rest" --St. Jerome', '"With the new day comes new strength and new thoughts" --Eleanor Roosevelt', '"The secret of getting ahead is getting started" --Mark Twain'])
 
 #Will replace this with a call to trivia.py
 def code2Subject(code):
     return trivia.codes[str(code)]
+
 
 
 @app.route('/')
@@ -198,7 +204,7 @@ def score_report():
         if score > record:
             users.addHighscore(who, subject, score)
         #render a template telling the user their score
-        return render_template("score.html", username=who, subject=subject, record=record, score=score, quote="Inspirational quote")
+        return render_template("score.html", username=who, subject=subject, record=record, score=score, quote=randomQuote())
 
 #Log out route, redirects to home page when done
 @app.route('/user/logout')
