@@ -16,23 +16,25 @@ def test():
     #print json
     print len(json)
 
+#returns a list of urls to images using the supplied phrase; /static/mystery.png by default
 def list_urls(phrase):
-    url = "https://api.gettyimages.com/v3/search/images?fields=id,title,thumb,referral_destinations&sort_order=best&phrase=" + phrase
+    url = "https://api.gettyimages.com/v3/search/images?fields=id,title,comp,referral_destinations&sort_order=best&phrase=" + phrase
     print url
+    #sizes are thumb, preview, comp, high_res_comp and display_set (for all sizes)
     opener = urllib2.build_opener()
     opener.addheaders = [('Api-Key', the_key)]
     try:
         response = opener.open(url)
         json_string = response.read()
         dictionary = json.loads(json_string)
-        list_of_urls = [""]
+        list_of_urls = []
         if dictionary["result_count"] > 0:
             for image in dictionary["images"]:
                 list_of_urls.append(image["display_sizes"][0]["uri"])
-        return list_of_urls
+        return list_of_urls + ["/static/mystery.png"]
     except:
         print "error"
-        return [""]
+        return ["/static/mystery.png"]
 
 def search(phrase):
     #prepositions and articles
