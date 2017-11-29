@@ -9,7 +9,7 @@ Imajin is a trivia site that allows you to answer various trivia questions, and 
 
 
 ## Api Keys
-* An API key for OpenTrivia is required and must be stored within static/.apikey
+* An API key for Getty Images is required and must be stored within static/.apikey
 
 
 ## Launch Instructions
